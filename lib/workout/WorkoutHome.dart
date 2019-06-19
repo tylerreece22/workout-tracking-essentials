@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/genericWidgets/ExerciseCard.dart';
 import 'package:workout_tracking_essentials/genericWidgets/MyCard.dart';
 
 class WorkoutHome extends StatelessWidget {
@@ -14,9 +15,19 @@ class WorkoutHome extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Text('Workout', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-                Padding(padding: EdgeInsets.only(top: 8.0, bottom: 8.0),child: Text('Quick Start', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),),
-                Padding(padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                Text(
+                  'Start Workout',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text(
+                    'Quick Start',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RaisedButton(
                     onPressed: () => {},
                     color: Theme.of(context).accentColor,
@@ -24,7 +35,31 @@ class WorkoutHome extends StatelessWidget {
                     child: Text('Start Workout'),
                   ),
                 ),
-                Text('Routines', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Text('Routines',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        FlatButton(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.add),
+                              Text('Routine'),
+                            ],
+                          ),
+                          color: Theme.of(context).buttonColor,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -32,28 +67,22 @@ class WorkoutHome extends StatelessWidget {
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             delegate: SliverChildListDelegate([
-              MyCard(
-                title: Text('Monday'),
-                icon: Icon(Icons.calendar_today),
-              ),
-              MyCard(
-                title: Text('Monday'),
-                icon: Icon(Icons.calendar_today),
-              ),
-              MyCard(
-                title: Text('Monday'),
-                icon: Icon(Icons.calendar_today),
-              ),
-              MyCard(
-                title: Text('Monday'),
-                icon: Icon(Icons.calendar_today),
+              new ExerciseCard(
+                title: "Monday",
+                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
               ),
             ]),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Padding(padding: EdgeInsets.only(top: 8.0, bottom: 8.0),child: Text('Example Routines', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text(
+                    'Example Routines',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ),
           ),
