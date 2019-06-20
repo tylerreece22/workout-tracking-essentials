@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/genericWidgets/ExerciseCard.dart';
-import 'package:workout_tracking_essentials/genericWidgets/MyCard.dart';
 
 class WorkoutHome extends StatelessWidget {
   WorkoutHome({this.style}) : super();
@@ -9,6 +8,7 @@ class WorkoutHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+//        backgroundColor: Theme.of(context).backgroundColor,
         body: Container(
       child: CustomScrollView(
         slivers: <Widget>[
@@ -70,6 +70,27 @@ class WorkoutHome extends StatelessWidget {
               new ExerciseCard(
                 title: "Monday",
                 workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                icon: Icons.fitness_center,
+              ),
+              new ExerciseCard(
+                title: "Tuesday",
+                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                icon: Icons.fitness_center,
+              ),
+              new ExerciseCard(
+                title: "Wednesday",
+                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                icon: Icons.fitness_center,
+              ),
+              new ExerciseCard(
+                title: "Thursday",
+                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                icon: Icons.fitness_center,
+              ),
+              new ExerciseCard(
+                title: "Friday",
+                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                icon: Icons.fitness_center,
               ),
             ]),
           ),
@@ -82,6 +103,21 @@ class WorkoutHome extends StatelessWidget {
                     'Example Routines',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
+                ),
+                new ExerciseCard(
+                  title: "Monday",
+                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                  icon: Icons.fitness_center,
+                ),
+                new ExerciseCard(
+                  title: "Tuesday",
+                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                  icon: Icons.fitness_center,
+                ),
+                new ExerciseCard(
+                  title: "Wednesday",
+                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                  icon: Icons.fitness_center,
                 ),
               ],
             ),

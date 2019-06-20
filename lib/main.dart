@@ -17,8 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         accentColor: Colors.amber,
-        buttonColor: Colors.blueAccent,
         textSelectionColor: Colors.white,
+        cardColor: Colors.white70,
+        buttonTheme: ButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          buttonColor: Colors.amber,
+        )
       ),
       home: MyHomePage(title: 'Workout'),
     );
@@ -59,11 +65,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+//      backgroundColor: Theme.of(context).backgroundColor,
+//      appBar: AppBar(
+//        title: Text(widget.title),
+//      ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Padding(padding: EdgeInsets.only(top: 33.0),
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
