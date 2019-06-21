@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/genericWidgets/ExerciseCard.dart';
 
+import 'MyRoutines.dart';
+
 class WorkoutHome extends StatelessWidget {
   WorkoutHome({this.style}) : super();
   final TextStyle style;
@@ -8,7 +10,6 @@ class WorkoutHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//        backgroundColor: Theme.of(context).backgroundColor,
         body: Container(
       child: CustomScrollView(
         slivers: <Widget>[
@@ -22,7 +23,8 @@ class WorkoutHome extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Workout',
-                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -42,11 +44,25 @@ class WorkoutHome extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text('Routines',
-                    style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text('Routines',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                ),
               ],
             ),
+          ),
+          MyRoutines(),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text('Example Routines',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              ),
+            ]),
           ),
           SliverGrid(
             gridDelegate:
@@ -54,58 +70,38 @@ class WorkoutHome extends StatelessWidget {
             delegate: SliverChildListDelegate([
               new ExerciseCard(
                 title: "Monday",
-                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                workouts: <String>[
+                  'Barbell Curl',
+                  'Pull ups',
+                  'Dumbbell curls',
+                  'Pull downs',
+                  'Sit ups'
+                ],
                 icon: Icons.fitness_center,
               ),
               new ExerciseCard(
                 title: "Tuesday",
-                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                workouts: <String>[
+                  'Barbell Curl',
+                  'Pull ups',
+                  'Dumbbell curls',
+                  'Pull downs',
+                  'Sit ups'
+                ],
                 icon: Icons.fitness_center,
               ),
               new ExerciseCard(
                 title: "Wednesday",
-                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
-                icon: Icons.fitness_center,
-              ),
-              new ExerciseCard(
-                title: "Thursday",
-                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
-                icon: Icons.fitness_center,
-              ),
-              new ExerciseCard(
-                title: "Friday",
-                workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
+                workouts: <String>[
+                  'Barbell Curl',
+                  'Pull ups',
+                  'Dumbbell curls',
+                  'Pull downs',
+                  'Sit ups'
+                ],
                 icon: Icons.fitness_center,
               ),
             ]),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Example Routines',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                new ExerciseCard(
-                  title: "Monday",
-                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
-                  icon: Icons.fitness_center,
-                ),
-                new ExerciseCard(
-                  title: "Tuesday",
-                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
-                  icon: Icons.fitness_center,
-                ),
-                new ExerciseCard(
-                  title: "Wednesday",
-                  workouts: <String>['Barbell Curl', 'Pull ups', 'Dumbbell curls','Pull downs', 'Sit ups'],
-                  icon: Icons.fitness_center,
-                ),
-              ],
-            ),
           ),
         ],
       ),
