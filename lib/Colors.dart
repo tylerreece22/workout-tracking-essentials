@@ -17,7 +17,8 @@ ThemeData buildTheme() {
       buttonTheme: ButtonThemeData(
         textTheme: ButtonTextTheme.normal,
         buttonColor: Colors.amber,
-      ));
+      ),
+  );
 }
 
 TextTheme _buildAppTextTheme(TextTheme base) {

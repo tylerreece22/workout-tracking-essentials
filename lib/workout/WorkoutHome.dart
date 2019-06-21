@@ -15,52 +15,36 @@ class WorkoutHome extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Text(
-                  'Start Workout',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Quick Start',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: RaisedButton(
-                    onPressed: () => {},
-//                    color: Theme.of(context).buttonColor,
-//                    textColor: Theme.of(context).primaryTextTheme,
-                    elevation: 8.0,
-                    child: Text('Start Workout'),
-                  ),
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Text('Routines',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        Text(
+                          'Workout',
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        FlatButton(
+                        RaisedButton(
+                          onPressed: () => {},
                           child: Row(
                             children: <Widget>[
                               Icon(Icons.add),
                               Text('Routine'),
                             ],
                           ),
-                          color: Theme.of(context).buttonColor,
+                          color: Colors.lightGreen,
                         )
                       ],
                     ),
                   ],
                 ),
+                Text('Routines',
+                    style: TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
           ),

@@ -23,35 +23,40 @@ class ExerciseCard extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.all(5.0),
         child: Container(
-//            decoration: BoxDecoration(
-//              boxShadow: [
-//                BoxShadow(
-//                    color: Colors.black, blurRadius: 5.0, spreadRadius: 1.0),
-//              ],
-//            ),
             child: Card(
-              color: Theme.of(context).cardColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          color: Theme.of(context).cardColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
-                          child: Text(title,
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold))),
-                      Icon(icon),
-                    ],
-                  ),
-                  ...workoutList()
+                  Padding(
+                      padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+                      child: Text(title,
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold))),
                 ],
               ),
-            )));
+              ...workoutList(),
+              Padding(
+                padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                child: RaisedButton(
+                    onPressed: () => {},
+                    elevation: 10.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('Start Workout'),
+                        Icon(icon),
+                      ],
+                    )),
+              ),
+            ],
+          ),
+        )));
   }
 }
