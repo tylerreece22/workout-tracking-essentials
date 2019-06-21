@@ -30,8 +30,9 @@ class WorkoutHome extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RaisedButton(
                     onPressed: () => {},
-                    color: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).textSelectionColor,
+//                    color: Theme.of(context).buttonColor,
+//                    textColor: Theme.of(context).primaryTextTheme,
+                    elevation: 8.0,
                     child: Text('Start Workout'),
                   ),
                 ),

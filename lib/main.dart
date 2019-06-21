@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'exercise/ExerciseHome.dart';
 import 'workout/WorkoutHome.dart';
+import 'Colors.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
@@ -10,22 +11,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeData myAppTheme = buildTheme();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Workout',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        accentColor: Colors.amber,
-        textSelectionColor: Colors.white,
-        cardColor: Colors.white70,
-        buttonTheme: ButtonThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          buttonColor: Colors.amber,
-        )
-      ),
+      theme: myAppTheme,
       home: MyHomePage(title: 'Workout'),
     );
   }
@@ -62,13 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final ThemeData myAppTheme = buildTheme();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      backgroundColor: Theme.of(context).backgroundColor,
-//      appBar: AppBar(
-//        title: Text(widget.title),
-//      ),
       body: Center(
         child: Padding(padding: EdgeInsets.only(top: 33.0),
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -94,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Colors.black12,
+        selectedItemColor: Theme.of(context).accentColor,
+        unselectedItemColor: Theme.of(context).primaryColor,
         onTap: _onItemTapped,
       ),
     );
