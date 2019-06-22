@@ -12,7 +12,7 @@ class ExerciseCard extends StatelessWidget {
     return workouts
         .map((workout) => new Row(
               children: <Widget>[
-                Text(workout),
+                Padding(padding: EdgeInsets.only(left: 10.0), child: Text(workout)),
               ],
             ))
         .toList();

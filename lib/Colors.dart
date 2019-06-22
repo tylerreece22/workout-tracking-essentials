@@ -17,8 +17,10 @@ ThemeData buildTheme() {
       buttonTheme: ButtonThemeData(
         textTheme: ButtonTextTheme.normal,
         buttonColor: Colors.amber,
-      ),
-  );
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(13.0),
+        ),
+      ));
 }
 
 TextTheme _buildAppTextTheme(TextTheme base) {
