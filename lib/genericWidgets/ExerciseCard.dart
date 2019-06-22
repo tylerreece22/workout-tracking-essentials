@@ -1,36 +1,50 @@
 import 'package:flutter/material.dart';
 
-class ExerciseCard extends StatelessWidget {
+class ExerciseCard extends StatefulWidget {
   final String title;
   final List<String> workouts;
   final IconData icon;
 
-  const ExerciseCard({Key key, this.title, this.workouts, this.icon})
-      : super(key: key);
+  const ExerciseCard({Key key, this.title, this.workouts, this.icon});
 
+  @override
+  State<StatefulWidget> createState() => ExerciseCardState(title: this.title, workouts: this.workouts, icon: this.icon);
+}
+
+class ExerciseCardState extends State<ExerciseCard> {
+  String title = "Exercise";
+  List<String> workouts = [];
+  IconData icon = Icons.fitness_center;
+
+  ExerciseCardState({this.title, this.workouts, this.icon});
+  
   List<Widget> workoutList() {
     return workouts
         .map((workout) => new Row(
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(left: 10.0), child: Text(workout)),
-              ],
-            ))
+      children: <Widget>[
+        Padding(
+            padding: EdgeInsets.only(left: 10.0), child: Text(workout)),
+      ],
+    ))
         .toList();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.all(5.0),
-        child: Container(
-            child: Card(
-                color: Theme.of(context).cardColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: InkWell(
-                  onTap: () => {},
+        child: GestureDetector(
+            onTap: () {
+              print('Exercise Card was tapped!');
+            },
+            child: Container(
+                child: Card(
+                  color: Theme
+                      .of(context)
+                      .cardColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
@@ -63,4 +77,5 @@ class ExerciseCard extends StatelessWidget {
                   ),
                 ))));
   }
+
 }
