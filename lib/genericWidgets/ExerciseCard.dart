@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/exercise/ExerciseCardDetail.dart';
 
 class ExerciseCard extends StatefulWidget {
   final String title;
@@ -35,7 +36,7 @@ class ExerciseCardState extends State<ExerciseCard> {
         padding: EdgeInsets.all(5.0),
         child: GestureDetector(
             onTap: () {
-              print('Exercise Card was tapped!');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ExerciseCardDetail()));
             },
             child: Container(
                 child: Card(

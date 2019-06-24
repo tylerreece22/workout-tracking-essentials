@@ -27,7 +27,8 @@ TextTheme _buildAppTextTheme(TextTheme base) {
   return base
       .copyWith(
         headline: base.headline.copyWith(
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w500,
+          color: Colors.white
         ),
         title: base.title.copyWith(
           fontSize: 18.0,
@@ -45,8 +46,8 @@ TextTheme _buildAppTextTheme(TextTheme base) {
       )
       .apply(
         fontFamily: 'Cantarell',
-        displayColor: Colors.black,
-        bodyColor: Colors.black,
+//        displayColor: Colors.black,
+//        bodyColor: Colors.black,
       );
 }
 

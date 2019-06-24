@@ -31,7 +31,7 @@ class WorkoutHome extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         RaisedButton(
-                          onPressed: () => {},
+                          onPressed: () => print('I was tapped'),
                           child: Row(
                             children: <Widget>[
                               Icon(Icons.add),
