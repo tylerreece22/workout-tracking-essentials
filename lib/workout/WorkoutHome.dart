@@ -21,10 +21,12 @@ class WorkoutHome extends StatelessWidget {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Text(
-                          'Workout',
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Workout',
+                            style: Theme.of(context).textTheme.title,
+                          ),
                         ),
                       ],
                     ),
@@ -46,9 +48,10 @@ class WorkoutHome extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Text('Routines',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  child: Text(
+                    'Routines',
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
                 ),
               ],
             ),
