@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Workout.dart';
+
 class CreateRoutine extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => CreateRoutineState();
@@ -10,9 +12,11 @@ class CreateRoutineState extends State<CreateRoutine> {
   List<Widget> workouts = [];
 
   _addWorkout() {
+    Workout workout = new Workout();
     setState(() {
-      workouts.add(Text('This is a workout'));
+      workouts.insertAll(workouts.length, workout.buildWorkoutSets());
     });
+
   }
 
   @override
@@ -20,32 +24,52 @@ class CreateRoutineState extends State<CreateRoutine> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'title',
+            title,
             style: Theme.of(context).textTheme.headline,
           ),
         ),
         body: Container(
             child: CustomScrollView(slivers: <Widget>[
+          SliverGrid(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+            delegate: SliverChildListDelegate([
+              Text('Set'),
+              Text('Previous'),
+              Text('lbs'),
+              Text('Reps'),
+              Icon(Icons.check),
+              ...workouts
+            ]),
+          ),
           SliverList(
               delegate: SliverChildListDelegate([
-            Row(
+            Column(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                RaisedButton(
-                  onPressed: _addWorkout,
-                  color: Colors.green,
-                  child: Row(
-                    children: <Widget>[Icon(Icons.add), Text('Workout')],
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: RaisedButton(
+                    onPressed: _addWorkout,
+                    color: Colors.green,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          'Exercise',
+                          style: Theme.of(context).textTheme.button,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
             )
-          ])
-          ),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  ...workouts
-                ]),
-              )
+          ])),
         ])));
   }
 }
