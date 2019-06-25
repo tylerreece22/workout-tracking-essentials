@@ -34,6 +34,10 @@ TextTheme _buildAppTextTheme(TextTheme base) {
           fontSize: 30.0,
           fontWeight: FontWeight.w800,
         ),
+        body1: base.body1.copyWith(
+          fontSize: 15.0,
+          fontWeight: FontWeight.w400
+        ),
         subtitle: base.subtitle.copyWith(
           fontSize: 20.0,
           fontWeight: FontWeight.w600,

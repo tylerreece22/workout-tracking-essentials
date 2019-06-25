@@ -36,7 +36,7 @@ class ExerciseCardState extends State<ExerciseCard> {
         padding: EdgeInsets.all(5.0),
         child: GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ExerciseCardDetail()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ExerciseCardDetail(title: title, workouts: workouts,)));
             },
             child: Container(
                 child: Card(

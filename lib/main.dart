@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'exercise/ExerciseHome.dart';
 import 'workout/WorkoutHome.dart';
-import 'Colors.dart';
+import 'Theme.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
