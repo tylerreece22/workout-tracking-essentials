@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/exercise/ExerciseCard.dart';
+import 'package:workout_tracking_essentials/exercise/CreateRoutine.dart';
+import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
 
 import 'MyRoutines.dart';
 
 class WorkoutHome extends StatelessWidget {
-  WorkoutHome({this.style}) : super();
-  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +31,6 @@ class WorkoutHome extends StatelessWidget {
                     ),
                     Column(
                       children: <Widget>[
-                        RaisedButton(
-                          onPressed: () => print('I was tapped'),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.add),
-                              Text('Routine'),
-                            ],
-                          ),
-                          color: Colors.lightGreen,
-                        )
                       ],
                     ),
                   ],
@@ -53,6 +42,11 @@ class WorkoutHome extends StatelessWidget {
                     style: Theme.of(context).textTheme.subtitle,
                   ),
                 ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateRoutine())),
+                  child: Icon(Icons.add),
+                  color: Colors.lightGreen,
+                )
               ],
             ),
           ),

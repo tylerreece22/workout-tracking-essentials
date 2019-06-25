@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/exercise/ExerciseCard.dart';
+import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
 
 class MyRoutines extends StatelessWidget {
   @override

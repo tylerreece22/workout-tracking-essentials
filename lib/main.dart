@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'Profile',
       style: optionStyle,
     ),
-    WorkoutHome(style: optionStyle),
+    WorkoutHome(),
     ExerciseHome(style: optionStyle),
     Text(
       'History',
