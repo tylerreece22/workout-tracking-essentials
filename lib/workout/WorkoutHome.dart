@@ -42,10 +42,13 @@ class WorkoutHome extends StatelessWidget {
                     style: Theme.of(context).textTheme.subtitle,
                   ),
                 ),
-                RaisedButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateRoutine())),
-                  child: Icon(Icons.add),
-                  color: Colors.lightGreen,
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                    child: RaisedButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateRoutine())),
+                      child: Icon(Icons.add, color: Colors.white,),
+                      color: Colors.green,
+                    )
                 )
               ],
             ),

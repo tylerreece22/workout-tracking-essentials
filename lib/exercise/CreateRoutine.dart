@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Workout.dart';
+import 'widgets/AddWorkoutButton.dart';
 
 class CreateRoutine extends StatefulWidget {
   @override
@@ -8,15 +9,18 @@ class CreateRoutine extends StatefulWidget {
 }
 
 class CreateRoutineState extends State<CreateRoutine> {
-  String title = '';
-  List<Widget> workouts = [];
+  String routineTitle = 'New Routine';
+  List<Widget> workouts = [
+    new Workout(
+      workoutName: 'Example Workout',
+    )
+  ];
 
   _addWorkout() {
-    Workout workout = new Workout();
+    Workout workout = new Workout(workoutName: 'cool workout');
     setState(() {
-      workouts.insertAll(workouts.length, workout.buildWorkoutSets());
+      workouts.add(workout);
     });
-
   }
 
   @override
@@ -24,52 +28,20 @@ class CreateRoutineState extends State<CreateRoutine> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            title,
+            routineTitle,
             style: Theme.of(context).textTheme.headline,
           ),
         ),
-        body: Container(
-            child: CustomScrollView(slivers: <Widget>[
-          SliverGrid(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
-            delegate: SliverChildListDelegate([
-              Text('Set'),
-              Text('Previous'),
-              Text('lbs'),
-              Text('Reps'),
-              Icon(Icons.check),
-              ...workouts
-            ]),
-          ),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: RaisedButton(
-                    onPressed: _addWorkout,
-                    color: Colors.green,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          'Exercise',
-                          style: Theme.of(context).textTheme.button,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ])),
-        ])));
+        body: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                  child: Column(
+                children: <Widget>[
+                  ...workouts,
+                  AddWorkoutButton(addWorkout: _addWorkout)
+                ],
+              ));
+            }));
   }
 }

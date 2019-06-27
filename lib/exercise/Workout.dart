@@ -1,39 +1,45 @@
 import 'package:flutter/material.dart';
 
-class Workout {
-//  @override
-//  State<StatefulWidget> createState() => WorkoutState();
-  String workoutName;
-  Set<WorkoutSet> sets;
+import 'widgets/AddSetButton.dart';
+import 'widgets/WorkoutRow.dart';
 
-  List<Widget> buildWorkoutSets() {
-    WorkoutSet set1 = new WorkoutSet(setNumber: 1, previous: '100lb x 6', weight: 100, reps: 6, completed: false);
-    return [
-      Text('${set1.setNumber}'),
-      Text('${set1.previous}'),
-      Text('${set1.weight}'),
-      Text('${set1.reps}'),
-      Text('${set1.completed}'),
-    ];
-  }
+class Workout extends StatefulWidget {
+  String workoutName;
+
+  Workout({this.workoutName});
+
+  @override
+  State<StatefulWidget> createState() => WorkoutState(workoutName: workoutName);
 }
 
-//class WorkoutState extends State<Workout> {
-//  String workoutName;
-//  List<WorkoutSet> sets;
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return ;
-//  }
-//}
+class WorkoutState extends State<Workout> {
+  String workoutName;
+  List<Widget> sets = [];
 
-class WorkoutSet {
-  int setNumber;
-  String previous;
-  int weight;
-  int reps;
-  bool completed;
+  WorkoutState({this.workoutName});
 
-  WorkoutSet({this.setNumber, this.previous, this.weight, this.reps, this.completed});
+  Widget _workoutName() {
+    return Text(
+      workoutName.toUpperCase(),
+      style: Theme.of(context).textTheme.subtitle,
+    );
+  }
+
+  Widget _addSet() {
+    setState(() {
+      sets.add(WorkoutRow('${sets.length + 1}', '100 x 6', '100', '6', 'true'));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        _workoutName(),
+        WorkoutRow('Set', 'Previous', 'Weight', 'Reps', 'Done'),
+        ...sets,
+        AddSetButton(_addSet)
+      ],
+    );
+  }
 }
