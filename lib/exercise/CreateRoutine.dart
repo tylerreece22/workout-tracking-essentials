@@ -11,7 +11,7 @@ class CreateRoutine extends StatefulWidget {
 class CreateRoutineState extends State<CreateRoutine> {
   String routineTitle = 'New Routine';
   List<Widget> workouts = [
-    new Workout(
+    Workout(
       workoutName: 'Example Workout',
     )
   ];

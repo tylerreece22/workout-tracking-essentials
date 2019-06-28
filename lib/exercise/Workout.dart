@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 
 import 'widgets/AddSetButton.dart';
 import 'widgets/WorkoutRow.dart';
@@ -18,13 +19,6 @@ class WorkoutState extends State<Workout> {
 
   WorkoutState({this.workoutName});
 
-  Widget _workoutName() {
-    return Text(
-      workoutName.toUpperCase(),
-      style: Theme.of(context).textTheme.subtitle,
-    );
-  }
-
   Widget _addSet() {
     setState(() {
       sets.add(WorkoutRow('${sets.length + 1}', '100 x 6', '100', '6', 'true'));
@@ -35,7 +29,7 @@ class WorkoutState extends State<Workout> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _workoutName(),
+      AppDialog(workoutName),
         WorkoutRow('Set', 'Previous', 'Weight', 'Reps', 'Done'),
         ...sets,
         AddSetButton(_addSet)
