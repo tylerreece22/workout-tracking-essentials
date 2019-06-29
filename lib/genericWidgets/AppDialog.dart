@@ -23,6 +23,12 @@ class AppDialogState extends State<AppDialog> {
   }
 
   @override
+  void initState() {
+    fieldNameController.text = fieldName;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FlatButton(
         child: Text(
@@ -36,7 +42,7 @@ class AppDialogState extends State<AppDialog> {
                 return AlertDialog(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                  title: Text('Workout Name:'),
+                  title: Text('New Name:'),
                   content: TextField(
                     autofocus: true,
                     controller: fieldNameController,
@@ -51,8 +57,9 @@ class AppDialogState extends State<AppDialog> {
                           ),
                           onPressed: () {
                             setState(() {
-                              fieldName = fieldNameController.text;
+                              fieldName = fieldNameController.text.trim();
                             });
+                            fieldNameController.text = fieldName;
                             Navigator.of(context).pop();
                           },
                         ),
@@ -61,7 +68,10 @@ class AppDialogState extends State<AppDialog> {
                             Icons.clear,
                             color: Colors.red,
                           ),
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            fieldNameController.text = fieldName;
+                          }
                         ),
                       ],
                     )

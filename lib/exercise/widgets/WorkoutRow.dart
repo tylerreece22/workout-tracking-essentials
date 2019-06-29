@@ -1,44 +1,42 @@
 import 'package:flutter/material.dart';
 
 class WorkoutRow extends StatelessWidget {
-  String item1;
-  String item2;
-  String item3;
-  String item4;
-  String item5;
+  Widget item1;
+  Widget item2;
+  Widget item3;
+  Widget item4;
+  Widget item5;
 
   WorkoutRow(this.item1, this.item2, this.item3, this.item4, this.item5);
 
-  Widget _rowItem(String headerName) {
+  Widget _rowItem(Widget headerName) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(headerName),
+        headerName,
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 30.0,
-        child: GridView.count(
-          crossAxisSpacing: 15.0,
-          physics: NeverScrollableScrollPhysics(),
-          // Diables GridView scrolling
-          shrinkWrap: true,
-          //
-          primary: true,
-          crossAxisCount: 5,
-          children: <Widget>[
-            _rowItem(item1),
-            _rowItem(item2),
-            _rowItem(item3),
-            _rowItem(item4),
-            _rowItem(item5),
-          ],
-        ));
+    return GridView.count(
+      crossAxisSpacing: 15.0,
+      physics: NeverScrollableScrollPhysics(),
+      // Diables GridView scrolling
+      shrinkWrap: true,
+      //
+      childAspectRatio: 2.0,
+      primary: true,
+      crossAxisCount: 5,
+      children: <Widget>[
+        _rowItem(item1),
+        _rowItem(item2),
+        _rowItem(item3),
+        _rowItem(item4),
+        _rowItem(item5),
+      ],
+    );
   }
-
 }

@@ -36,7 +36,7 @@ TextTheme _buildAppTextTheme(TextTheme base) {
         ),
         body1: base.body1.copyWith(
           fontSize: 15.0,
-          fontWeight: FontWeight.w400
+          fontWeight: FontWeight.w500
         ),
         subtitle: base.subtitle.copyWith(
           fontSize: 20.0,
@@ -54,15 +54,5 @@ TextTheme _buildAppTextTheme(TextTheme base) {
       )
       .apply(
         fontFamily: 'Cantarell',
-//        displayColor: Colors.black,
-//        bodyColor: Colors.black,
       );
-}
-
-ButtonThemeData _buildAppButtonTheme(ButtonThemeData base) {
-  return base.copyWith(
-    buttonColor: Colors.green,
-    highlightColor: Colors.greenAccent,
-    disabledColor: Colors.grey,
-  );
 }
