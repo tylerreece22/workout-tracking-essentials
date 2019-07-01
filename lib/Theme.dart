@@ -20,24 +20,22 @@ ThemeData buildTheme() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(13.0),
         ),
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.white
       ));
 }
 
 TextTheme _buildAppTextTheme(TextTheme base) {
   return base
       .copyWith(
-        headline: base.headline.copyWith(
-          fontWeight: FontWeight.w500,
-          color: Colors.white
-        ),
+        headline: base.headline
+            .copyWith(fontWeight: FontWeight.w500, color: Colors.white),
         title: base.title.copyWith(
           fontSize: 30.0,
           fontWeight: FontWeight.w800,
         ),
-        body1: base.body1.copyWith(
-          fontSize: 15.0,
-          fontWeight: FontWeight.w500
-        ),
+        body1: base.body1.copyWith(fontSize: 15.0, fontWeight: FontWeight.w500),
         subtitle: base.subtitle.copyWith(
           fontSize: 20.0,
           fontWeight: FontWeight.w600,

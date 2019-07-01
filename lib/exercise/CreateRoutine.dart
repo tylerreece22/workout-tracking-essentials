@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Workout.dart';
 import 'widgets/AddWorkoutButton.dart';
+import 'widgets/EditingBar.dart';
 
 class CreateRoutine extends StatefulWidget {
   @override
@@ -23,6 +24,10 @@ class CreateRoutineState extends State<CreateRoutine> {
     });
   }
 
+  _saveWorkouts() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +43,7 @@ class CreateRoutineState extends State<CreateRoutine> {
               return Container(
                   child: Column(
                 children: <Widget>[
+                  EditingBar('Create Routine', widgetsToSave: workouts),
                   ...workouts,
                   AddWorkoutButton(addWorkout: _addWorkout)
                 ],

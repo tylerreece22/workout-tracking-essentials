@@ -5,6 +5,8 @@ import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
 import 'MyRoutines.dart';
 
 class WorkoutHome extends StatelessWidget {
+  List<Widget> savedWorkouts = [];
+
 
   @override
   Widget build(BuildContext context) {
