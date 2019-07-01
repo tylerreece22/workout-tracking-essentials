@@ -22,7 +22,6 @@ class WorkoutRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisSpacing: 1.0,
       physics: NeverScrollableScrollPhysics(),
       // Diables GridView scrolling
       shrinkWrap: true,

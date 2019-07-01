@@ -3,6 +3,7 @@ import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 
 import 'widgets/AddSetButton.dart';
 import 'widgets/CheckButton.dart';
+import 'widgets/SetField.dart';
 import 'widgets/WorkoutRow.dart';
 
 class Workout extends StatefulWidget {
@@ -23,12 +24,21 @@ class WorkoutState extends State<Workout> {
   Widget _addSet() {
     setState(() {
       sets.add(WorkoutRow(
-          Text('${sets.length + 1}', style: Theme.of(context).textTheme.body2,),
-          Text('100x99', style: Theme.of(context).textTheme.body2,),
-          Text('100', style: Theme.of(context).textTheme.body2,),
-          Text('6', style: Theme.of(context).textTheme.body2,),
-          CheckButton()
-      ));
+          Text(
+            '${sets.length + 1}',
+            style: Theme.of(context).textTheme.body2,
+          ),
+          Text(
+            '100x99',
+            style: Theme.of(context).textTheme.body2,
+          ),
+          SetField(
+            '100'
+          ),
+          SetField(
+            '6',
+          ),
+          CheckButton()));
     });
   }
 
@@ -37,7 +47,11 @@ class WorkoutState extends State<Workout> {
     return Column(
       children: <Widget>[
         AppDialog(workoutName),
-        WorkoutRow(Text('Set'), Text('Previous'), Text('Weight'), Text('Reps'),
+        WorkoutRow(
+            Text('Set'),
+            Text('Previous'),
+            Text('Weight'),
+            Text('Reps'),
             Text('Done')),
         ...sets,
         AddSetButton(_addSet)

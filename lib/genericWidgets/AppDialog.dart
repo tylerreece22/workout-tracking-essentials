@@ -12,6 +12,7 @@ class AppDialog extends StatefulWidget {
 class AppDialogState extends State<AppDialog> {
   final fieldNameController = TextEditingController();
   String fieldName;
+  FocusNode _focusNode = FocusNode();
 
   AppDialogState(this.fieldName);
 
@@ -26,6 +27,12 @@ class AppDialogState extends State<AppDialog> {
   void initState() {
     fieldNameController.text = fieldName;
     super.initState();
+    _focusNode.addListener(() {
+      if(_focusNode.hasFocus) {
+        fieldNameController.selection = TextSelection(baseOffset: 0, extentOffset: fieldNameController.text.length);
+      }
+    });
+    
   }
 
   @override
@@ -46,6 +53,7 @@ class AppDialogState extends State<AppDialog> {
                   content: TextField(
                     autofocus: true,
                     controller: fieldNameController,
+                    focusNode: _focusNode,
                   ),
                   actions: <Widget>[
                     ButtonBar(
