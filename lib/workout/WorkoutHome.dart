@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/exercise/CreateRoutine.dart';
 import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
+import 'package:workout_tracking_essentials/model/Routine.dart';
 
 import 'MyRoutines.dart';
 
@@ -8,8 +11,19 @@ class WorkoutHome extends StatelessWidget {
   List<Widget> savedWorkouts = [];
 
 
+
+  _getRoutines() async {
+//    Map workoutMap = jsonDecode();
+//    var routine = Routine.fromJson(workoutMap);
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final json = DefaultAssetBundle.of(context)
+        .loadString('assets/routines.json');
+    print(json);
+
     return Scaffold(
         body: Container(
       child: CustomScrollView(
