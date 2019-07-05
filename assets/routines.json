@@ -1,0 +1,365 @@
+{
+  "id": 123,
+  "routines": [
+    {
+      "name": "Monday Back and Bi's",
+      "workouts": [
+        {
+          "name": "Pull ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 2,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 3,
+              "previous": "0x10",
+              "weight": 0,
+              "reps": 12
+            }
+          ]
+        },
+        {
+          "name": "Barbell Curls",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "50x6",
+              "weight": 50,
+              "reps": 6
+            },
+            {
+              "setNumber": 2,
+              "previous": "55x6",
+              "weight": 55,
+              "reps": 6
+            },
+            {
+              "setNumber": 3,
+              "previous": "60x2",
+              "weight": 60,
+              "reps": 2
+            }
+          ]
+        },
+        {
+          "name": "Pull Downs",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "100x8",
+              "weight": 100,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "110x8",
+              "weight": 110,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "120x6",
+              "weight": 120,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Butterflies",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "20x8",
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "25x8",
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "30x6",
+              "weight": 30,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Sit ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "120x10",
+              "weight": 120,
+              "reps": 10
+            },
+            {
+              "setNumber": 2,
+              "previous": "130x8",
+              "weight": 130,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "140x8",
+              "weight": 140,
+              "reps": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Monday Back and Bi's",
+      "workouts": [
+        {
+          "name": "Pull ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 2,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 3,
+              "previous": "0x10",
+              "weight": 0,
+              "reps": 12
+            }
+          ]
+        },
+        {
+          "name": "Barbell Curls",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "50x6",
+              "weight": 50,
+              "reps": 6
+            },
+            {
+              "setNumber": 2,
+              "previous": "55x6",
+              "weight": 55,
+              "reps": 6
+            },
+            {
+              "setNumber": 3,
+              "previous": "60x2",
+              "weight": 60,
+              "reps": 2
+            }
+          ]
+        },
+        {
+          "name": "Pull Downs",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "100x8",
+              "weight": 100,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "110x8",
+              "weight": 110,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "120x6",
+              "weight": 120,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Butterflies",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "20x8",
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "25x8",
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "30x6",
+              "weight": 30,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Sit ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "120x10",
+              "weight": 120,
+              "reps": 10
+            },
+            {
+              "setNumber": 2,
+              "previous": "130x8",
+              "weight": 130,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "140x8",
+              "weight": 140,
+              "reps": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Monday Back and Bi's",
+      "workouts": [
+        {
+          "name": "Pull ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 2,
+              "previous": "0x12",
+              "weight": 0,
+              "reps": 12
+            },
+            {
+              "setNumber": 3,
+              "previous": "0x10",
+              "weight": 0,
+              "reps": 12
+            }
+          ]
+        },
+        {
+          "name": "Barbell Curls",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "50x6",
+              "weight": 50,
+              "reps": 6
+            },
+            {
+              "setNumber": 2,
+              "previous": "55x6",
+              "weight": 55,
+              "reps": 6
+            },
+            {
+              "setNumber": 3,
+              "previous": "60x2",
+              "weight": 60,
+              "reps": 2
+            }
+          ]
+        },
+        {
+          "name": "Pull Downs",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "100x8",
+              "weight": 100,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "110x8",
+              "weight": 110,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "120x6",
+              "weight": 120,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Butterflies",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "20x8",
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "setNumber": 2,
+              "previous": "25x8",
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "30x6",
+              "weight": 30,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "name": "Sit ups",
+          "sets": [
+            {
+              "setNumber": 1,
+              "previous": "120x10",
+              "weight": 120,
+              "reps": 10
+            },
+            {
+              "setNumber": 2,
+              "previous": "130x8",
+              "weight": 130,
+              "reps": 8
+            },
+            {
+              "setNumber": 3,
+              "previous": "140x8",
+              "weight": 140,
+              "reps": 8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

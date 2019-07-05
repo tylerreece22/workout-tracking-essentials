@@ -8,22 +8,20 @@ import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'MyRoutines.dart';
 
 class WorkoutHome extends StatelessWidget {
-  List<Widget> savedWorkouts = [];
+  Routine routine;
 
+  Future<Routine> _getRoutine(context) async {
+    final routineString = await DefaultAssetBundle.of(context)
+        .loadString('assets/routines.json');
+    final map = json.decode(routineString);
+    Routine loadedRoutine = Routine.fromJson(map);
 
-
-  _getRoutines() async {
-//    Map workoutMap = jsonDecode();
-//    var routine = Routine.fromJson(workoutMap);
+    return loadedRoutine;
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final json = DefaultAssetBundle.of(context)
-        .loadString('assets/routines.json');
-    print(json);
-
     return Scaffold(
         body: Container(
       child: CustomScrollView(
@@ -80,45 +78,22 @@ class WorkoutHome extends StatelessWidget {
               ),
             ]),
           ),
-          SliverGrid(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            delegate: SliverChildListDelegate([
-              new ExerciseCard(
-                title: "Monday",
-                workouts: <String>[
-                  'Barbell Curl',
-                  'Pull ups',
-                  'Dumbbell curls',
-                  'Pull downs',
-                  'Sit ups'
-                ],
-                icon: Icons.fitness_center,
-              ),
-              new ExerciseCard(
-                title: "Tuesday",
-                workouts: <String>[
-                  'Barbell Curl',
-                  'Pull ups',
-                  'Dumbbell curls',
-                  'Pull downs',
-                  'Sit ups'
-                ],
-                icon: Icons.fitness_center,
-              ),
-              new ExerciseCard(
-                title: "Wednesday",
-                workouts: <String>[
-                  'Barbell Curl',
-                  'Pull ups',
-                  'Dumbbell curls',
-                  'Pull downs',
-                  'Sit ups'
-                ],
-                icon: Icons.fitness_center,
-              ),
-            ]),
-          ),
+//          SliverGrid(
+//            gridDelegate:
+//                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+//            delegate: SliverChildListDelegate([
+//              FutureBuilder(
+//                future: _getRoutine(context),
+//                builder: (context, snapshot) {
+//                if (snapshot.hasData) { //checks if the response returns valid data
+//                  return RoutineCard(snapshot.data);
+//                } else if (snapshot.hasError) { //checks if the response throws an error
+//                  return Text("${snapshot.error}");
+//                }
+//                return CircularProgressIndicator();
+//              },),
+//            ]),
+//          ),
         ],
       ),
     ));

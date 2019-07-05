@@ -1,82 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/exercise/RoutineCardDetail.dart';
+import 'package:workout_tracking_essentials/model/Routine.dart';
 
-class ExerciseCard extends StatefulWidget {
-  final String title;
-  final List<String> workouts;
-  final IconData icon;
+class RoutineCard extends StatefulWidget {
+  Routine routine;
 
-  const ExerciseCard({Key key, this.title, this.workouts, this.icon});
+  RoutineCard(this.routine, {Key key});
 
   @override
-  State<StatefulWidget> createState() => ExerciseCardState(title: this.title, workouts: this.workouts, icon: this.icon);
+  State<StatefulWidget> createState() =>
+      RoutineCardState(this.routine);
 }
 
-class ExerciseCardState extends State<ExerciseCard> {
+class RoutineCardState extends State<RoutineCard> {
   String title = "Exercise";
-  List<String> workouts = [];
-  IconData icon = Icons.fitness_center;
+  Routine routine;
 
-  ExerciseCardState({this.title, this.workouts, this.icon});
-  
-  List<Widget> workoutList() {
-    return workouts
-        .map((workout) => new Row(
-      children: <Widget>[
-        Padding(
-            padding: EdgeInsets.only(left: 10.0), child: Text(workout)),
-      ],
-    ))
+  RoutineCardState(this.routine);
+
+  List<Widget> _workoutList() {
+    setState(() {
+      title = routine.name;
+    });
+    return routine.workouts
+        .map(
+          (workout) => Padding(
+              padding: EdgeInsets.only(left: 10.0), child: Text(workout.name)),
+        )
         .toList();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.all(5.0),
         child: GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ExerciseCardDetail(title: title, workouts: workouts,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ExerciseCardDetail(
+                          title: routine.name,
+                          workouts: routine.workouts
+                              .map(
+                                (workout) => workout.name,
+                              )
+                              .toList())));
             },
             child: Container(
                 child: Card(
-                  color: Theme
-                      .of(context)
-                      .cardColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+              color: Theme.of(context).cardColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Padding(
-                              padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
-                              child: Text(title,
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold))),
-                        ],
-                      ),
-                      ...workoutList(),
                       Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                        child: RaisedButton(
-                            onPressed: () => {},
-                            elevation: 10.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text('Start Workout'),
-                                Icon(icon),
-                              ],
-                            )),
-                      ),
+                          padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+                          child: Text(title,
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold))),
                     ],
                   ),
-                ))));
+                  ..._workoutList(),
+                  Row(
+                    children: <Widget>[],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: RaisedButton(
+                        onPressed: () => {},
+                        elevation: 10.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('Start Workout'),
+                            Icon(Icons.fitness_center),
+                          ],
+                        )),
+                  ),
+                ],
+              ),
+            ))));
   }
-
 }
