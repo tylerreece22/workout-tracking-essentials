@@ -6,8 +6,6 @@ import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
 
-import 'MyRoutines.dart';
-
 class WorkoutHome extends StatelessWidget {
   Routine routine;
 
@@ -94,26 +92,9 @@ class WorkoutHome extends StatelessWidget {
                     ),
                   ]),
                 ),
-//          SliverGrid(
-//            gridDelegate:
-//                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//            delegate: SliverChildListDelegate([
-//              FutureBuilder(
-//                future: _getRoutine(context),
-//                builder: (context, snapshot) {
-//                if (snapshot.hasData) { //checks if the response returns valid data
-//                  return RoutineCard(snapshot.data);
-//                } else if (snapshot.hasError) { //checks if the response throws an error
-//                  return Text("${snapshot.error}");
-//                }
-//                return CircularProgressIndicator();
-//              },),
-//            ]),
-//          ),
               ],
             );
           } else if (snapshot.hasError) {
-            print(snapshot.error);
             return Text("${snapshot.error}");
           }
           return CircularProgressIndicator();
