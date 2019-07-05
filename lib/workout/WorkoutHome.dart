@@ -82,16 +82,16 @@ class WorkoutHome extends StatelessWidget {
                         .toList()
                   ]),
                 ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Example Routines',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ),
-                  ]),
-                ),
+//                SliverList(
+//                  delegate: SliverChildListDelegate([
+//                    Padding(
+//                      padding: EdgeInsets.all(10.0),
+//                      child: Text('Example Routines',
+//                          style: TextStyle(
+//                              fontSize: 20, fontWeight: FontWeight.bold)),
+//                    ),
+//                  ]),
+//                ),
               ],
             );
           } else if (snapshot.hasError) {

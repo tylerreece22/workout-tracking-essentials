@@ -21,9 +21,7 @@ ThemeData buildTheme() {
           borderRadius: BorderRadius.circular(13.0),
         ),
       ),
-      iconTheme: IconThemeData(
-        color: Colors.white
-      ));
+      iconTheme: IconThemeData(color: Colors.white));
 }
 
 TextTheme _buildAppTextTheme(TextTheme base) {

@@ -8,8 +8,7 @@ class RoutineCard extends StatefulWidget {
   RoutineCard(this.routine, {Key key});
 
   @override
-  State<StatefulWidget> createState() =>
-      RoutineCardState(this.routine);
+  State<StatefulWidget> createState() => RoutineCardState(this.routine);
 }
 
 class RoutineCardState extends State<RoutineCard> {
@@ -61,10 +60,10 @@ class RoutineCardState extends State<RoutineCard> {
                     children: <Widget>[
                       Padding(
                           padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
-                          child: Text(title,
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold))),
+                          child: Text(title.length <= 13 ? title : title.substring(0, 11) + '...',
+                              style: Theme.of(context).textTheme.subtitle
+                          ),
+                      ),
                     ],
                   ),
                   ..._workoutList(),
