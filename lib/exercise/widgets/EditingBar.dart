@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 
 class EditingBar extends StatelessWidget {
   String editName;
-  List<Widget> widgetsToSave = [];
+  Function() checkFunction;
 
-  EditingBar(this.editName, {this.widgetsToSave});
-
-  _saveWidgets() {
-
-  }
+  EditingBar(this.editName, this.checkFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +32,7 @@ class EditingBar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 5.0),
                 child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () => checkFunction(),
                     color: Colors.green,
                     child: Icon(
                       Icons.check,

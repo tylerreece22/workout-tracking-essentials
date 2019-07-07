@@ -85,6 +85,9 @@ class RoutineCardState extends State<RoutineCard> {
                   ),
                 ],
               ),
-            ))));
+            ),
+            ),
+        ),
+    );
   }
 }

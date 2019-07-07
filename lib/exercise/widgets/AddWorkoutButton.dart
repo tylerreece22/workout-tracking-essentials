@@ -24,7 +24,7 @@ class AddWorkoutButton extends StatelessWidget {
                         color: Colors.white,
                       ),
                       Text(
-                        'Exercise',
+                        'Workout',
                         style: Theme
                             .of(context)
                             .textTheme
