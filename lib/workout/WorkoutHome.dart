@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:workout_tracking_essentials/workout/CreateRoutine.dart';
+import 'package:workout_tracking_essentials/workout/ExampleRoutines.dart';
 import 'package:workout_tracking_essentials/workout/RoutineCard.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
@@ -26,110 +27,93 @@ class WorkoutHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: FutureBuilder(
-        future: _getExampleRoutines(context),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return CustomScrollView(
-              slivers: <Widget>[
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Container(
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
                         children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Text(
-                                  'Workout',
-                                  style: Theme.of(context).textTheme.title,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[],
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              'Workout',
+                              style: Theme.of(context).textTheme.title,
+                            ),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          'Routines',
-                          style: Theme.of(context).textTheme.subtitle,
-                        ),
+                      Column(
+                        children: <Widget>[],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: RaisedButton(
-                          onPressed: () async {
-                            String routineName = 'New Routine';
-                            await showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AppDialog(
-                                    (newName) => {routineName = newName},
-                                    routineName,
-                                    title: 'Routine Name:',
-                                  );
-                                });
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        CreateRoutine(user, routineName)));
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          color: Colors.green,
-                        ),
-                      )
                     ],
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('My Routines',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      'Routines',
+                      style: Theme.of(context).textTheme.subtitle,
                     ),
-                  ]),
-                ),
-                MyRoutines(),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Example Routines',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: RaisedButton(
+                      onPressed: () async {
+                        String routineName = 'New Routine';
+                        await showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AppDialog(
+                                (newName) => {routineName = newName},
+                                routineName,
+                                title: 'Routine Name:',
+                              );
+                            });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    CreateRoutine(user, routineName)));
+                      },
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      color: Colors.green,
                     ),
-                  ]),
+                  )
+                ],
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text('My Routines',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
-                SliverGrid(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  delegate: SliverChildListDelegate([
-                    ...snapshot.data
-                        .map<Widget>((routine) => RoutineCard(routine))
-                        .toList()
-                  ]),
+              ]),
+            ),
+            MyRoutines(),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text('Example Routines',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-          return CircularProgressIndicator();
-        },
+              ]),
+            ),
+            ExampleRoutines(),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
