@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AddWorkoutButton extends StatelessWidget {
   Function() addWorkout;
 
-  AddWorkoutButton({Function() this.addWorkout});
+  AddWorkoutButton(this.addWorkout);
 
   @override
   Widget build(BuildContext context) {

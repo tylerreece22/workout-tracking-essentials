@@ -5,10 +5,9 @@ part 'User.g.dart';
 
 @JsonSerializable()
 class User {
-  int id;
   List<Routine> routines;
 
-  User(this.id, this.routines);
+  User(this.routines);
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

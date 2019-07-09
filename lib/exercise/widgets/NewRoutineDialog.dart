@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 
-class AppDialog extends StatefulWidget {
-  Function(String) setField;
+class NewRoutineDialog extends StatefulWidget {
   String fieldName;
-  String title;
-
-  AppDialog(this.setField, this.fieldName, {this.title});
-
+  
   @override
-  State<StatefulWidget> createState() => AppDialogState(this.setField, this.fieldName, title: this.title);
+  State<StatefulWidget> createState() => NewRoutineDialogState(this.fieldName); 
 }
 
-class AppDialogState extends State<AppDialog> {
+class NewRoutineDialogState extends State<NewRoutineDialog> {
   final fieldNameController = TextEditingController();
-  Function(String) setField;
-  FocusNode _focusNode = FocusNode();
-  String title;
   String fieldName;
+  FocusNode _focusNode = FocusNode();
 
-  AppDialogState(this.setField, this.fieldName, {this.title});
+  NewRoutineDialogState(this.fieldName);
 
   @override
   void dispose() {
@@ -32,19 +26,19 @@ class AppDialogState extends State<AppDialog> {
     fieldNameController.text = fieldName;
     super.initState();
     _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        fieldNameController.selection = TextSelection(
-            baseOffset: 0, extentOffset: fieldNameController.text.length);
+      if(_focusNode.hasFocus) {
+        fieldNameController.selection = TextSelection(baseOffset: 0, extentOffset: fieldNameController.text.length);
       }
     });
-  }
 
+  }
+  
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      title: title != null ? Text(title) : Text('New Name:'),
+      title: Text('New Routine Name:'),
       content: TextField(
         autofocus: true,
         controller: fieldNameController,
@@ -59,7 +53,9 @@ class AppDialogState extends State<AppDialog> {
                 color: Colors.green,
               ),
               onPressed: () {
-                  setField(fieldNameController.text.trim());
+                setState(() {
+                  fieldName = fieldNameController.text.trim();
+                });
                 fieldNameController.text = fieldName;
                 Navigator.of(context).pop();
               },
@@ -72,10 +68,12 @@ class AppDialogState extends State<AppDialog> {
                 onPressed: () {
                   Navigator.of(context).pop();
                   fieldNameController.text = fieldName;
-                }),
+                }
+            ),
           ],
         )
       ],
-    );
+    );;
   }
+  
 }

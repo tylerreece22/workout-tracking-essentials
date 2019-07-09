@@ -35,11 +35,28 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
     super.initState();
   }
 
+  _setWorkoutName(String newName) {
+    setState(() {
+      workout.name = newName;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        AppDialog(workout.name),
+        FlatButton(
+          child: Text(
+            workout.name.toUpperCase(),
+            style: Theme.of(context).textTheme.subtitle,
+          ),
+          onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AppDialog(_setWorkoutName, workout.name);
+              }),
+        ),
+//        AppDialog(workout.name),
         WorkoutColumnHeaders(
           Text('Set'),
           Text('Previous'),
