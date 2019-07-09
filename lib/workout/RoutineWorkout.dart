@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/exercise/widgets/WorkoutColumnHeaders.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
+import 'package:workout_tracking_essentials/workout/widgets/WorkoutColumnHeaders.dart';
 
 import 'widgets/AddSetButton.dart';
 import 'widgets/ShowSet.dart';

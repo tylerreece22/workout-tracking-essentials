@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/exercise/RoutineCardDetail.dart';
+import 'package:workout_tracking_essentials/workout/RoutineCardDetail.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 
 class RoutineCard extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:workout_tracking_essentials/exercise/RoutineCard.dart';
+import 'package:workout_tracking_essentials/workout/RoutineCard.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
 
