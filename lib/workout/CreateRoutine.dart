@@ -1,9 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
-import 'package:workout_tracking_essentials/model/User.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
@@ -12,52 +8,53 @@ import 'package:workout_tracking_essentials/workout/RoutineWorkout.dart';
 import 'widgets/AddWorkoutButton.dart';
 import 'widgets/EditingBar.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:workout_tracking_essentials/util/globals.dart' as global;
 
 class CreateRoutine extends StatefulWidget {
-  String routineName;
-  User user;
-  
-  CreateRoutine(this.user, this.routineName);
-  
-  @override
-  State<StatefulWidget> createState() => CreateRoutineState(user, routineName);
-}
-
-class CreateRoutineState extends State<CreateRoutine> {
-  String routineName;
-  User user;
   String newWorkoutName = '';
   List<Workout> workouts = [];
   AppFileWriter writer = new AppFileWriter();
+  Routine routine;
 
+  CreateRoutine(this.routine);
+
+  @override
+  State<StatefulWidget> createState() => CreateRoutineState();
+}
+
+class CreateRoutineState extends State<CreateRoutine> {
   List<Widget> workoutsToShow = [];
-  
-  CreateRoutineState(this.user, this.routineName);
 
   _setWorkoutName(String newName) {
-      newWorkoutName = newName;
+    widget.newWorkoutName = newName;
   }
 
   _addWorkout() async {
-    await showDialog( context: context,
+    bool xPressed = false;
+    await showDialog(
+        context: context,
         builder: (BuildContext context) {
-          return AppDialog(_setWorkoutName, 'Workout ${workouts.length + 1}', title: 'Workout Name:');
+          return AppDialog(
+              _setWorkoutName, 'Workout ${widget.workouts.length + 1}',
+              setXPressed: () => {xPressed = true}, title: 'Workout Name:');
         });
-    workouts.add(Workout(newWorkoutName, [WorkoutSet(1, '100x8', 100, 8)]));
-    setState(() {
-      workoutsToShow.add(RoutineWorkout(workouts[workouts.length - 1]));
-    });
+    if (!xPressed) {
+      widget.workouts.add(
+          Workout(widget.newWorkoutName, [WorkoutSet(1, '100x8', 100, 8)]));
+      setState(() {
+        workoutsToShow
+            .add(RoutineWorkout(widget.workouts[widget.workouts.length - 1]));
+      });
+    }
   }
 
   _writeNewRoutine() {
-    Routine routine = new Routine(routineName, workouts);
-    writer.writeRoutine(routine);
+    global.writer.writeRoutine(widget.routine);
   }
 
   @override
   void initState() {
-    workoutsToShow = workouts.map((set) => RoutineWorkout(set)).toList();
+    workoutsToShow = widget.workouts.map((set) => RoutineWorkout(set)).toList();
     super.initState();
   }
 
@@ -66,7 +63,7 @@ class CreateRoutineState extends State<CreateRoutine> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            routineName,
+            widget.routine.name,
             style: Theme.of(context).textTheme.headline,
           ),
         ),

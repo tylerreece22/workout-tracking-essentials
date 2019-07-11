@@ -12,8 +12,12 @@ Routine _$RoutineFromJson(Map<String, dynamic> json) {
       (json['workouts'] as List)
           ?.map((e) =>
               e == null ? null : Workout.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+          ?.toList())
+    ..id = json['id'] as String;
 }
 
-Map<String, dynamic> _$RoutineToJson(Routine instance) =>
-    <String, dynamic>{'name': instance.name, 'workouts': instance.workouts};
+Map<String, dynamic> _$RoutineToJson(Routine instance) => <String, dynamic>{
+      'name': instance.name,
+      'id': instance.id,
+      'workouts': instance.workouts
+    };

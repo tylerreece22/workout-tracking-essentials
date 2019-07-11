@@ -54,16 +54,18 @@ class AppFileWriter {
   }
 
   Future<File> writeRoutine(Routine routine) async {
-//    String userFromLocal = await readUser();
-//    Map<String, dynamic> jsonMap = await jsonDecode(userFromLocal);
-    // Set state
-//    user = User.fromJson(jsonMap);
     user.routines.add(routine);
     final file = await _localFile;
-    print('Writing workouts locally!');
-    print(jsonEncode(user));
-//    final userString = _convertWorkoutsToString();
-//    final userString = "{routines: [{name: 'stupid routine', workouts: [{name: 'dick ups', sets: [{setNumber: 1, previous: '100x5', weight: 100, reps: 5}]}]}]}";
+    final userString = jsonEncode(user);
+    print('writing to file: ' + userString);
+
+    // Write the file.
+    return file.writeAsString(userString);
+  }
+
+  Future<File> deleteRoutine(String uuid) async {
+    user.routines = user.routines.where((routine) => routine.id != uuid).toList();
+    final file = await _localFile;
     final userString = jsonEncode(user);
     print('writing to file: ' + userString);
 

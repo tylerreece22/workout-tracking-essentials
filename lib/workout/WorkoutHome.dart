@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/model/Routine.dart';
+import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 import 'package:workout_tracking_essentials/workout/CreateRoutine.dart';
 import 'package:workout_tracking_essentials/workout/ExampleRoutines.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
-import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
 
 import 'MyRoutines.dart';
@@ -71,20 +72,24 @@ class WorkoutHomeState extends State<WorkoutHome> {
                           child: RaisedButton(
                             onPressed: () async {
                               String routineName = 'New Routine';
+                              bool xPressed = false;
                               await showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AppDialog(
                                       (newName) => {routineName = newName},
                                       routineName,
+                                      setXPressed : () => {xPressed = true},
                                       title: 'Routine Name:',
                                     );
                                   });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateRoutine(user, routineName)));
+                              if (!xPressed)
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CreateRoutine(
+                                            Routine(
+                                                routineName, <Workout>[]))));
                             },
                             child: Icon(
                               Icons.add,

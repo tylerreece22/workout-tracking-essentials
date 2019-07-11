@@ -4,21 +4,19 @@ class AppDialog extends StatefulWidget {
   Function(String) setField;
   String fieldName;
   String title;
+  Function() setXPressed;
 
-  AppDialog(this.setField, this.fieldName, {this.title});
+  AppDialog(this.setField, this.fieldName, {this.setXPressed, this.title});
 
   @override
-  State<StatefulWidget> createState() => AppDialogState(this.setField, this.fieldName, title: this.title);
+  State<StatefulWidget> createState() => AppDialogState();
 }
 
 class AppDialogState extends State<AppDialog> {
   final fieldNameController = TextEditingController();
-  Function(String) setField;
   FocusNode _focusNode = FocusNode();
-  String title;
-  String fieldName;
 
-  AppDialogState(this.setField, this.fieldName, {this.title});
+  AppDialogState();
 
   @override
   void dispose() {
@@ -29,7 +27,7 @@ class AppDialogState extends State<AppDialog> {
 
   @override
   void initState() {
-    fieldNameController.text = fieldName;
+    fieldNameController.text = widget.fieldName;
     super.initState();
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
@@ -44,7 +42,7 @@ class AppDialogState extends State<AppDialog> {
     return AlertDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      title: title != null ? Text(title) : Text('New Name:'),
+      title: widget.title != null ? Text(widget.title) : Text('New Name:'),
       content: TextField(
         autofocus: true,
         controller: fieldNameController,
@@ -59,8 +57,8 @@ class AppDialogState extends State<AppDialog> {
                 color: Colors.green,
               ),
               onPressed: () {
-                  setField(fieldNameController.text.trim());
-                fieldNameController.text = fieldName;
+                  widget.setField(fieldNameController.text.trim());
+                fieldNameController.text = widget.fieldName;
                 Navigator.of(context).pop();
               },
             ),
@@ -71,7 +69,8 @@ class AppDialogState extends State<AppDialog> {
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  fieldNameController.text = fieldName;
+                  widget.setXPressed();
+                  fieldNameController.text = widget.fieldName;
                 }),
           ],
         )

@@ -27,13 +27,20 @@ class EditingBar extends StatelessWidget {
                   onPressed: () => Navigator.pop(context)),
             ),
           ),
-          Text(editName, style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey)),
+          Text(editName,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle
+                  .copyWith(color: Colors.grey)),
           Container(
               width: 60.0,
               child: Padding(
                 padding: EdgeInsets.only(right: 5.0),
                 child: RaisedButton(
-                    onPressed: () => checkFunction(),
+                    onPressed: () {
+                      checkFunction();
+                      Navigator.pop(context);
+                    },
                     color: Colors.green,
                     child: Icon(
                       Icons.check,
