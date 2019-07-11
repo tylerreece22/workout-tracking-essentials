@@ -12,7 +12,7 @@ class RoutineCard extends StatefulWidget {
 }
 
 class RoutineCardState extends State<RoutineCard> {
-  String title = "Exercise";
+  String title;
   Routine routine;
 
   RoutineCardState(this.routine);
@@ -27,6 +27,12 @@ class RoutineCardState extends State<RoutineCard> {
               padding: EdgeInsets.only(left: 10.0), child: Text(workout.name)),
         )
         .toList();
+  }
+
+  @override
+  void initState() {
+    title = routine.name;
+    super.initState();
   }
 
   @override

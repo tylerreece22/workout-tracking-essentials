@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
+import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 
 import 'package:workout_tracking_essentials/workout/RoutineWorkout.dart';
 import 'widgets/AddWorkoutButton.dart';
@@ -27,6 +29,7 @@ class CreateRoutineState extends State<CreateRoutine> {
   User user;
   String newWorkoutName = '';
   List<Workout> workouts = [];
+  AppFileWriter writer = new AppFileWriter();
 
   List<Widget> workoutsToShow = [];
   
@@ -47,36 +50,15 @@ class CreateRoutineState extends State<CreateRoutine> {
     });
   }
 
+  _writeNewRoutine() {
+    Routine routine = new Routine(routineName, workouts);
+    writer.writeRoutine(routine);
+  }
+
   @override
   void initState() {
     workoutsToShow = workouts.map((set) => RoutineWorkout(set)).toList();
     super.initState();
-  }
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    print(directory);
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/myRoutines.json');
-  }
-
-  String _convertWorkoutsToString() {
-    user.routines.add(Routine(routineName, workouts));
-    String userString = user.toJson().toString();
-    return userString;
-  }
-
-  Future<File> writeWorkouts() async {
-    final file = await _localFile;
-    print('Writing workouts locally!');
-
-    // Write the file.
-    return file.writeAsString(_convertWorkoutsToString());
   }
 
   @override
@@ -94,7 +76,7 @@ class CreateRoutineState extends State<CreateRoutine> {
               return Container(
                   child: Column(
                 children: <Widget>[
-                  EditingBar('Create Routine', writeWorkouts),
+                  EditingBar('Create Routine', _writeNewRoutine),
                   ...workoutsToShow,
                   AddWorkoutButton(_addWorkout)
                 ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/exercise/widgets/SetField.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
+import 'package:workout_tracking_essentials/workout/widgets/SetField.dart';
 
 class ShowSet extends StatelessWidget {
   WorkoutSet set;

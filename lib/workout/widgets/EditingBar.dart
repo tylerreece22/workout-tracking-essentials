@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 
 class EditingBar extends StatelessWidget {
   String editName;
