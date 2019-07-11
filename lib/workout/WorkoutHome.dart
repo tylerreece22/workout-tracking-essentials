@@ -5,7 +5,7 @@ import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 import 'package:workout_tracking_essentials/workout/CreateRoutine.dart';
-import 'package:workout_tracking_essentials/workout/ExampleRoutines.dart';
+import 'package:workout_tracking_essentials/workout/example/ExampleRoutines.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
 

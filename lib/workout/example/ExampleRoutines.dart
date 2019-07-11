@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/workout/RoutineCard.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
+
+import 'ExampleRoutineCard.dart';
 
 class ExampleRoutines extends StatelessWidget {
   User user;
@@ -28,7 +29,7 @@ class ExampleRoutines extends StatelessWidget {
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             delegate: SliverChildListDelegate([
               ...snapshot.data
-                  .map<Widget>((routine) => RoutineCard(routine))
+                  .map<Widget>((routine) => ExampleRoutineCard(routine))
                   .toList(),
             ]),
           );

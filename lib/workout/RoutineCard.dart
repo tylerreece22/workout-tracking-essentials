@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/workout/RoutineCardDetail.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
+
+import 'CreateRoutine.dart';
 
 class RoutineCard extends StatefulWidget {
   Routine routine;
 
-  RoutineCard(this.routine, {Key key});
+  RoutineCard(this.routine);
 
   @override
-  State<StatefulWidget> createState() => RoutineCardState(this.routine);
+  State<StatefulWidget> createState() => RoutineCardState();
 }
 
 class RoutineCardState extends State<RoutineCard> {
   String title;
-  Routine routine;
-
-  RoutineCardState(this.routine);
 
   List<Widget> _workoutList() {
     setState(() {
-      title = routine.name;
+      title = widget.routine.name;
     });
-    return routine.workouts
+    return widget.routine.workouts
         .map(
           (workout) => Padding(
               padding: EdgeInsets.only(left: 10.0), child: Text(workout.name)),
@@ -31,7 +29,7 @@ class RoutineCardState extends State<RoutineCard> {
 
   @override
   void initState() {
-    title = routine.name;
+    title = widget.routine.name;
     super.initState();
   }
 
@@ -44,13 +42,7 @@ class RoutineCardState extends State<RoutineCard> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ExerciseCardDetail(
-                          title: routine.name,
-                          workouts: routine.workouts
-                              .map(
-                                (workout) => workout.name,
-                              )
-                              .toList())));
+                      builder: (context) => CreateRoutine(widget.routine)));
             },
             child: Container(
                 child: Card(

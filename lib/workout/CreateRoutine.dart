@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
-import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 
 import 'package:workout_tracking_essentials/workout/RoutineWorkout.dart';
 import 'widgets/AddWorkoutButton.dart';
@@ -12,8 +11,6 @@ import 'package:workout_tracking_essentials/util/globals.dart' as global;
 
 class CreateRoutine extends StatefulWidget {
   String newWorkoutName = '';
-  List<Workout> workouts = [];
-  AppFileWriter writer = new AppFileWriter();
   Routine routine;
 
   CreateRoutine(this.routine);
@@ -35,15 +32,15 @@ class CreateRoutineState extends State<CreateRoutine> {
         context: context,
         builder: (BuildContext context) {
           return AppDialog(
-              _setWorkoutName, 'Workout ${widget.workouts.length + 1}',
+              _setWorkoutName, 'Workout ${widget.routine.workouts.length + 1}',
               setXPressed: () => {xPressed = true}, title: 'Workout Name:');
         });
     if (!xPressed) {
-      widget.workouts.add(
+      widget.routine.workouts.add(
           Workout(widget.newWorkoutName, [WorkoutSet(1, '100x8', 100, 8)]));
       setState(() {
         workoutsToShow
-            .add(RoutineWorkout(widget.workouts[widget.workouts.length - 1]));
+            .add(RoutineWorkout(widget.routine.workouts[widget.routine.workouts.length - 1]));
       });
     }
   }
@@ -54,7 +51,7 @@ class CreateRoutineState extends State<CreateRoutine> {
 
   @override
   void initState() {
-    workoutsToShow = widget.workouts.map((set) => RoutineWorkout(set)).toList();
+    workoutsToShow = widget.routine.workouts.map((set) => RoutineWorkout(set)).toList();
     super.initState();
   }
 
