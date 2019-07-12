@@ -5,6 +5,7 @@ import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 
 import 'package:workout_tracking_essentials/workout/RoutineWorkout.dart';
+import 'widgets/AddSubtractButton.dart';
 import 'widgets/AddWorkoutButton.dart';
 import 'widgets/EditingBar.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
@@ -33,6 +34,15 @@ class CreateRoutineState extends State<CreateRoutine> {
     widget.newWorkoutName = newName;
   }
 
+  _removeWorkout() {
+    if (routine.workouts.isNotEmpty && workoutsToShow.isNotEmpty) {
+      routine.workouts.removeLast();
+      setState(() {
+        workoutsToShow.removeLast();
+      });
+    }
+  }
+
   _addWorkout() async {
     bool xPressed = false;
     await showDialog(
@@ -43,7 +53,6 @@ class CreateRoutineState extends State<CreateRoutine> {
               setXPressed: () => {xPressed = true}, title: 'Workout Name:');
         });
     if (!xPressed) {
-      print('adding workout ' + routine.workouts.toString());
       routine.workouts
           .add(Workout(widget.newWorkoutName, [WorkoutSet(1, '---', 100, 8)]));
       setState(() {

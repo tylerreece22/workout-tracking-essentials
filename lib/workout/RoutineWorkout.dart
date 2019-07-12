@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
+import 'package:workout_tracking_essentials/workout/widgets/AddSubtractButton.dart';
 import 'package:workout_tracking_essentials/workout/widgets/WorkoutColumnHeaders.dart';
 
-import 'widgets/AddSetButton.dart';
 import 'widgets/ShowSet.dart';
 
 class RoutineWorkout extends StatefulWidget {
@@ -27,6 +27,15 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
     setState(() {
       sets.add(ShowSet(workout.sets[workout.sets.length - 1]));
     });
+  }
+
+  _removeSet() {
+    if (sets.isNotEmpty && workout.sets.isNotEmpty) {
+      workout.sets.removeLast();
+      setState(() {
+        sets.removeLast();
+      });
+    }
   }
 
   @override
@@ -64,7 +73,13 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
           Text('Reps'),
         ),
         ...sets,
-        AddSetButton(_addSet)
+        ButtonBar(
+          alignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            AddSubtractButton(true, _addSet),
+            AddSubtractButton(false, _removeSet)
+          ],
+        ),
       ],
     );
   }

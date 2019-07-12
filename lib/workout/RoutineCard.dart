@@ -74,7 +74,9 @@ class RoutineCardState extends State<RoutineCard> {
                 Padding(
                   padding: EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RaisedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+
+                      },
                       elevation: 10.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

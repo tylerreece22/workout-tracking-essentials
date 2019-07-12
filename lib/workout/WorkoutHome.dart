@@ -90,7 +90,7 @@ class WorkoutHomeState extends State<WorkoutHome> {
                                     MaterialPageRoute(
                                         builder: (context) => CreateRoutine(
                                             Routine(
-                                                routineName, <Workout>[Workout('Workout 1', <WorkoutSet>[WorkoutSet(1, '---', 100, 8)])]))));
+                                                routineName, <Workout>[]))));
                             },
                             child: Icon(
                               Icons.add,

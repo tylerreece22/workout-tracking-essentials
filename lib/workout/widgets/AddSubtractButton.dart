@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AddSetButton extends StatelessWidget {
-  Function() addSet;
+class AddSubtractButton extends StatelessWidget {
+  Function() callback;
+  bool add;
 
-  AddSetButton(this.addSet);
+  AddSubtractButton(this.add, this.callback);
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +14,12 @@ class AddSetButton extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(10.0),
           child: RaisedButton(
-            color: Colors.lightGreen,
-            onPressed: addSet,
+            color: add ? Colors.lightGreen : Colors.red,
+            onPressed: callback,
             child: Row(
               children: <Widget>[
                 Icon(
-                  Icons.add,
+                  add ? Icons.add : Icons.remove,
                   color: Colors.white,
                 ),
                 Text(
