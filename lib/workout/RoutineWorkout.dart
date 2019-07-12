@@ -5,27 +5,30 @@ import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 import 'package:workout_tracking_essentials/workout/widgets/AddSubtractButton.dart';
 import 'package:workout_tracking_essentials/workout/widgets/WorkoutColumnHeaders.dart';
 
+import 'widgets/CheckButton.dart';
 import 'widgets/ShowSet.dart';
 
 class RoutineWorkout extends StatefulWidget {
   Workout workout;
+  bool isWorkout;
 
-  RoutineWorkout(this.workout);
+  RoutineWorkout(this.workout, {this.isWorkout});
 
   @override
-  State<StatefulWidget> createState() => RoutineWorkoutState(this.workout);
+  State<StatefulWidget> createState() => RoutineWorkoutState(workout, isWorkout);
 }
 
 class RoutineWorkoutState extends State<RoutineWorkout> {
   Workout workout;
   List<Widget> sets = [];
+  bool isWorkout;
 
-  RoutineWorkoutState(this.workout);
+  RoutineWorkoutState(this.workout, this.isWorkout);
 
   _addSet() {
     workout.sets.add(WorkoutSet(workout.sets.length + 1, '---', 100, 8));
     setState(() {
-      sets.add(ShowSet(workout.sets[workout.sets.length - 1]));
+      sets.add(ShowSet(workout.sets[workout.sets.length - 1], isWorkout: isWorkout,));
     });
   }
 
@@ -40,7 +43,7 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
 
   @override
   void initState() {
-    sets = workout.sets.map((set) => ShowSet(set)).toList();
+    sets = workout.sets.map((set) => ShowSet(set, isWorkout: isWorkout,)).toList();
     super.initState();
   }
 
@@ -65,7 +68,6 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
                 return AppDialog(_setWorkoutName, workout.name);
               }),
         ),
-//        AppDialog(workout.name),
         WorkoutColumnHeaders(
           Text('Set'),
           Text('Previous'),
@@ -77,7 +79,7 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             AddSubtractButton(true, _addSet),
-            AddSubtractButton(false, _removeSet)
+            AddSubtractButton(false, _removeSet),
           ],
         ),
       ],

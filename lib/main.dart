@@ -59,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(padding: EdgeInsets.only(top: 33.0),
+        child: SafeArea(
+//          padding: EdgeInsets.only(top: 33.0),
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),

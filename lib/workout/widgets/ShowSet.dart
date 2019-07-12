@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 import 'package:workout_tracking_essentials/workout/widgets/SetField.dart';
 
+import 'CheckButton.dart';
+
 class ShowSet extends StatelessWidget {
   WorkoutSet set;
+  bool isWorkout;
 
-  ShowSet(this.set);
+  ShowSet(this.set, {this.isWorkout});
 
   Widget _textRowItem(String name) {
     return Row(
@@ -29,6 +32,7 @@ class ShowSet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isWorkout == null) isWorkout = false;
     return GridView.count(
       physics: NeverScrollableScrollPhysics(),
       // Diables GridView scrolling
@@ -36,12 +40,13 @@ class ShowSet extends StatelessWidget {
       //
       childAspectRatio: 2.0,
       primary: true,
-      crossAxisCount: 4,
+      crossAxisCount: isWorkout ? 5 : 4,
       children: <Widget>[
         _textRowItem(set.setNumber.toString()),
         _textRowItem(set.previous),
         _editableRowItem(set.weight.toString()),
         _editableRowItem(set.reps.toString()),
+        if (isWorkout) CheckButton()
       ],
     );
   }

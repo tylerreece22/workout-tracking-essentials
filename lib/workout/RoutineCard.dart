@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 
 import 'CreateRoutine.dart';
+import 'StartWorkout.dart';
 
 enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
 
@@ -74,9 +75,7 @@ class RoutineCardState extends State<RoutineCard> {
                 Padding(
                   padding: EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RaisedButton(
-                      onPressed: () => {
-
-                      },
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => StartWorkout(widget.routine))),
                       elevation: 10.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

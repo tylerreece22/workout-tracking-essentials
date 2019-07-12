@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
-import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 import 'package:workout_tracking_essentials/workout/CreateRoutine.dart';
 import 'package:workout_tracking_essentials/workout/example/ExampleRoutines.dart';
@@ -80,7 +79,7 @@ class WorkoutHomeState extends State<WorkoutHome> {
                                     return AppDialog(
                                       (newName) => {routineName = newName},
                                       routineName,
-                                      setXPressed : () => {xPressed = true},
+                                      setXPressed: () => {xPressed = true},
                                       title: 'Routine Name:',
                                     );
                                   });
