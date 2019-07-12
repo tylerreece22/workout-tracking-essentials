@@ -44,7 +44,7 @@ class RoutineCardState extends State<RoutineCard> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CreateRoutine(widget.routine, deleteable: true,)));
+                  builder: (context) => CreateRoutine(widget.routine, editable: true,)));
         },
         child: Container(
           child: Card(

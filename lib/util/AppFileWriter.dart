@@ -63,7 +63,7 @@ class AppFileWriter {
     return file.writeAsString(userString);
   }
 
-  Future<File> deleteRoutine(String uuid) async {
+  deleteRoutine(String uuid) async {
     user.routines = user.routines.where((routine) => routine.id != uuid).toList();
     final file = await _localFile;
     final userString = jsonEncode(user);
@@ -71,5 +71,10 @@ class AppFileWriter {
 
     // Write the file.
     return file.writeAsString(userString);
+  }
+
+  updateRoutine(Routine routine) async {
+    await deleteRoutine(routine.id);
+    await writeRoutine(routine);
   }
 }

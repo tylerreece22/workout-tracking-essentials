@@ -37,8 +37,8 @@ class EditingBar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 5.0),
                 child: RaisedButton(
-                    onPressed: () {
-                      checkFunction();
+                    onPressed: () async {
+                      await checkFunction();
                       Navigator.pop(context);
                     },
                     color: Colors.green,
