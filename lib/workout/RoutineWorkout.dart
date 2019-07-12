@@ -23,7 +23,7 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
   RoutineWorkoutState(this.workout);
 
   _addSet() {
-    workout.sets.add(WorkoutSet(workout.sets.length + 1, '100x8', 100, 8));
+    workout.sets.add(WorkoutSet(workout.sets.length + 1, '---', 100, 8));
     setState(() {
       sets.add(ShowSet(workout.sets[workout.sets.length - 1]));
     });

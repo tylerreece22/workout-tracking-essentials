@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
+import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
 import 'package:workout_tracking_essentials/util/AppFileWriter.dart';
 import 'package:workout_tracking_essentials/workout/CreateRoutine.dart';
 import 'package:workout_tracking_essentials/workout/example/ExampleRoutines.dart';
@@ -89,7 +90,7 @@ class WorkoutHomeState extends State<WorkoutHome> {
                                     MaterialPageRoute(
                                         builder: (context) => CreateRoutine(
                                             Routine(
-                                                routineName, <Workout>[]))));
+                                                routineName, <Workout>[Workout('Workout 1', <WorkoutSet>[WorkoutSet(1, '---', 100, 8)])]))));
                             },
                             child: Icon(
                               Icons.add,

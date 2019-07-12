@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_tracking_essentials/genericWidgets/BinaryAppDialog.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/Workout.dart';
 import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
@@ -12,15 +13,21 @@ import 'package:workout_tracking_essentials/util/globals.dart' as global;
 class CreateRoutine extends StatefulWidget {
   String newWorkoutName = '';
   Routine routine;
+  bool deleteable;
 
-  CreateRoutine(this.routine);
+  CreateRoutine(this.routine, {this.deleteable});
 
   @override
-  State<StatefulWidget> createState() => CreateRoutineState();
+  State<StatefulWidget> createState() =>
+      CreateRoutineState(routine, deleteable: deleteable);
 }
 
 class CreateRoutineState extends State<CreateRoutine> {
   List<Widget> workoutsToShow = [];
+  Routine routine;
+  bool deleteable;
+
+  CreateRoutineState(this.routine, {this.deleteable});
 
   _setWorkoutName(String newName) {
     widget.newWorkoutName = newName;
@@ -32,26 +39,29 @@ class CreateRoutineState extends State<CreateRoutine> {
         context: context,
         builder: (BuildContext context) {
           return AppDialog(
-              _setWorkoutName, 'Workout ${widget.routine.workouts.length + 1}',
+              _setWorkoutName, 'Workout ${routine.workouts.length + 1}',
               setXPressed: () => {xPressed = true}, title: 'Workout Name:');
         });
     if (!xPressed) {
-      widget.routine.workouts.add(
-          Workout(widget.newWorkoutName, [WorkoutSet(1, '100x8', 100, 8)]));
+      print('adding workout ' + routine.workouts.toString());
+      routine.workouts.add(
+          Workout(widget.newWorkoutName, [WorkoutSet(1, '---', 100, 8)]));
       setState(() {
         workoutsToShow
-            .add(RoutineWorkout(widget.routine.workouts[widget.routine.workouts.length - 1]));
+            .add(RoutineWorkout(routine.workouts[routine.workouts.length - 1]));
       });
     }
   }
 
   _writeNewRoutine() {
-    global.writer.writeRoutine(widget.routine);
+    global.writer.writeRoutine(routine);
   }
 
   @override
   void initState() {
-    workoutsToShow = widget.routine.workouts.map((set) => RoutineWorkout(set)).toList();
+    workoutsToShow =
+        routine.workouts.map((set) => RoutineWorkout(set)).toList();
+    if (deleteable == null) deleteable = false;
     super.initState();
   }
 
@@ -59,18 +69,43 @@ class CreateRoutineState extends State<CreateRoutine> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            widget.routine.name,
-            style: Theme.of(context).textTheme.headline,
-          ),
-        ),
+            title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              routine.name,
+              style: Theme.of(context).textTheme.headline,
+            ),
+            deleteable
+                ? IconButton(
+                    icon: Icon(Icons.delete_outline),
+                    onPressed: () async {
+                      bool yes = false;
+                      await showDialog(
+                          context: context,
+                          builder: (context) {
+                        return BinaryAppDialog(
+                          'Are you sure you want to delete?',
+                          () => {yes = true},
+                        );
+                      });
+                      if (yes) {
+                        global.writer.deleteRoutine(routine.id);
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  )
+                : Container(),
+          ],
+        )),
         body: ListView.builder(
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                   child: Column(
                 children: <Widget>[
-                  EditingBar('Create Routine', _writeNewRoutine),
+                  EditingBar(deleteable ? 'Edit Routine' : 'Create Routine',
+                      _writeNewRoutine),
                   ...workoutsToShow,
                   AddWorkoutButton(_addWorkout)
                 ],
