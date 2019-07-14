@@ -27,6 +27,11 @@ class AppFileWriter {
     return File('$path/$fileName');
   }
 
+  Future<File> get _localHistoryFile async {
+    final path = await _localPath;
+    return File('$path/routineHistory.json');
+  }
+
   Future<String> readUser() async {
     try {
       final file = await _localFile;
@@ -46,6 +51,7 @@ class AppFileWriter {
     }
   }
 
+
   _writeNewUser() async {
     final file = await _localFile;
     print('Writing new user!');
@@ -53,9 +59,14 @@ class AppFileWriter {
     file.writeAsString(userString);
   }
 
-  Future<File> writeRoutine(Routine routine) async {
+  Future<File> writeRoutine(Routine routine, {isHistory}) async {
+    File file;
     user.routines.add(routine);
-    final file = await _localFile;
+    if (isHistory != null) {
+      file = await _localHistoryFile;
+    } else {
+      file = await _localFile;
+    }
     final userString = jsonEncode(user);
     print('writing to file: ' + userString);
 

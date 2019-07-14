@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/genericWidgets/BinaryAppDialog.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
-import 'package:workout_tracking_essentials/model/Workout.dart';
-import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
-
-import 'package:workout_tracking_essentials/workout/RoutineWorkout.dart';
-import 'widgets/AddWorkoutButton.dart';
-import 'widgets/EditingBar.dart';
-import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/util/globals.dart' as global;
+
+import 'widgets/EditingBar.dart';
+import 'widgets/WorkoutList.dart';
 
 class CreateRoutine extends StatefulWidget {
   String newWorkoutName = '';
@@ -29,42 +25,8 @@ class CreateRoutineState extends State<CreateRoutine> {
 
   CreateRoutineState(this.routine, {this.editable});
 
-  _setWorkoutName(String newName) {
-    widget.newWorkoutName = newName;
-  }
-
-  _removeWorkout() {
-    if (routine.workouts.isNotEmpty && workoutsToShow.isNotEmpty) {
-      routine.workouts.removeLast();
-      setState(() {
-        workoutsToShow.removeLast();
-      });
-    }
-  }
-
-  _addWorkout() async {
-    bool xPressed = false;
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AppDialog(
-              _setWorkoutName, 'Workout ${routine.workouts.length + 1}',
-              setXPressed: () => {xPressed = true}, title: 'Workout Name:');
-        });
-    if (!xPressed) {
-      routine.workouts
-          .add(Workout(widget.newWorkoutName, [WorkoutSet(1, '---', 100, 8)]));
-      setState(() {
-        workoutsToShow
-            .add(RoutineWorkout(routine.workouts[routine.workouts.length - 1]));
-      });
-    }
-  }
-
   @override
   void initState() {
-    workoutsToShow =
-        routine.workouts.map((set) => RoutineWorkout(set)).toList();
     if (editable == null) editable = false;
     super.initState();
   }
@@ -113,8 +75,7 @@ class CreateRoutineState extends State<CreateRoutine> {
                       editable
                           ? () => global.writer.updateRoutine(routine)
                           : () => global.writer.writeRoutine(routine)),
-                  ...workoutsToShow,
-                  AddWorkoutButton(_addWorkout)
+                  WorkoutList(routine),
                 ],
               ));
             }));

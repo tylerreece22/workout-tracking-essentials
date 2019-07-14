@@ -15,6 +15,7 @@ ThemeData buildTheme() {
       primaryTextTheme: _buildAppTextTheme(base.primaryTextTheme),
       accentTextTheme: _buildAppTextTheme(base.accentTextTheme),
       buttonTheme: ButtonThemeData(
+        padding: EdgeInsets.all(8.0),
         textTheme: ButtonTextTheme.normal,
         buttonColor: Colors.amber,
         shape: RoundedRectangleBorder(

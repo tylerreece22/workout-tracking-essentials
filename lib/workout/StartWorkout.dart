@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking_essentials/genericWidgets/AppDialog.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
-import 'package:workout_tracking_essentials/model/Workout.dart';
-import 'package:workout_tracking_essentials/model/WorkoutSet.dart';
+import 'package:workout_tracking_essentials/util/TimerText.dart';
 
-import 'package:workout_tracking_essentials/util/globals.dart' as global;
-import 'RoutineWorkout.dart';
-import 'widgets/AddWorkoutButton.dart';
+import 'widgets/WorkoutList.dart';
 
 class StartWorkout extends StatefulWidget {
   Routine routine;
@@ -28,54 +24,46 @@ class StartWorkoutState extends State<StartWorkout> {
 
   @override
   void initState() {
-    workoutsToShow =
-        routine.workouts.map((set) => RoutineWorkout(set, isWorkout: true,)).toList();
     time = _stopwatch.elapsedMilliseconds.toString();
     _stopwatch.start();
     super.initState();
-  }
-
-  _setWorkoutName(String newName) {
-    widget.newWorkoutName = newName;
-  }
-
-  _addWorkout() async {
-    bool xPressed = false;
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AppDialog(
-              _setWorkoutName, 'Workout ${routine.workouts.length + 1}',
-              setXPressed: () => {xPressed = true}, title: 'Workout Name:');
-        });
-    if (!xPressed) {
-      routine.workouts
-          .add(Workout(widget.newWorkoutName, [WorkoutSet(1, '---', 100, 8)]));
-      setState(() {
-        workoutsToShow
-            .add(RoutineWorkout(routine.workouts[routine.workouts.length - 1], isWorkout: true,));
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            routine.name,
-            style: Theme.of(context).textTheme.headline,
-          ),
-        ),
+            backgroundColor: Colors.amber,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                TimerText(
+                  stopwatch: _stopwatch,
+                ),
+                RaisedButton(
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  onPressed: () {},
+                  child: Text('Finished'),
+                ),
+              ],
+            )),
         body: ListView.builder(
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                   child: Column(
                 children: <Widget>[
-                  Text(time),
-                  ...workoutsToShow,
-                  AddWorkoutButton(_addWorkout),
+                  Text(
+                    routine.name,
+                    overflow: TextOverflow.clip,
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                  Divider(),
+                  WorkoutList(
+                    routine,
+                    isWorkout: true,
+                  ),
                 ],
               ));
             }));

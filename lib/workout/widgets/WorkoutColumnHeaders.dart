@@ -5,9 +5,9 @@ class WorkoutColumnHeaders extends StatelessWidget {
   Widget item2;
   Widget item3;
   Widget item4;
-  Widget item5;
+  bool isWorkout;
 
-  WorkoutColumnHeaders(this.item1, this.item2, this.item3, this.item4, {this.item5});
+  WorkoutColumnHeaders(this.item1, this.item2, this.item3, this.item4, {this.isWorkout});
 
   Widget _rowItem(Widget headerName) {
     return Row(
@@ -25,7 +25,7 @@ class WorkoutColumnHeaders extends StatelessWidget {
     items.add(_rowItem(item2));
     items.add(_rowItem(item3));
     items.add(_rowItem(item4));
-    item5 != null ?? items.add(_rowItem(item5));
+    if (isWorkout != null) items.add(_rowItem(Text('Done')));
     return items;
 }
 
@@ -38,7 +38,7 @@ class WorkoutColumnHeaders extends StatelessWidget {
       //
       childAspectRatio: 2.0,
       primary: true,
-      crossAxisCount: item5 != null ? 5 : 4,
+      crossAxisCount: isWorkout != null ? 5 : 4,
       children: <Widget>[
        ..._createItems()
       ],

@@ -45,7 +45,10 @@ class RoutineCardState extends State<RoutineCard> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CreateRoutine(widget.routine, editable: true,)));
+                  builder: (context) => CreateRoutine(
+                        widget.routine,
+                        editable: true,
+                      )));
         },
         child: Container(
           child: Card(
@@ -75,7 +78,11 @@ class RoutineCardState extends State<RoutineCard> {
                 Padding(
                   padding: EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RaisedButton(
-                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => StartWorkout(widget.routine))),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  StartWorkout(widget.routine))),
                       elevation: 10.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
