@@ -12,8 +12,12 @@ Workout _$WorkoutFromJson(Map<String, dynamic> json) {
       (json['sets'] as List)
           ?.map((e) =>
               e == null ? null : WorkoutSet.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+          ?.toList())
+    ..id = json['id'] as String;
 }
 
-Map<String, dynamic> _$WorkoutToJson(Workout instance) =>
-    <String, dynamic>{'name': instance.name, 'sets': instance.sets};
+Map<String, dynamic> _$WorkoutToJson(Workout instance) => <String, dynamic>{
+      'name': instance.name,
+      'id': instance.id,
+      'sets': instance.sets
+    };

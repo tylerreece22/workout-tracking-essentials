@@ -10,8 +10,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
   return User((json['routines'] as List)
       ?.map(
           (e) => e == null ? null : Routine.fromJson(e as Map<String, dynamic>))
-      ?.toList());
+      ?.toList())
+    ..id = json['id'] as String;
 }
 
 Map<String, dynamic> _$UserToJson(User instance) =>
-    <String, dynamic>{'routines': instance.routines};
+    <String, dynamic>{'id': instance.id, 'routines': instance.routines};

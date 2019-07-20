@@ -24,6 +24,7 @@ class RoutineWorkoutState extends State<RoutineWorkout> {
   RoutineWorkoutState(this.workout);
 
   _addSet() {
+    //TODO: widget and workout model are out of sync at this point
     workout.sets.add(WorkoutSet(workout.sets.length + 1, '---', 100, 8));
     setState(() {
       sets.add(ShowSet(
