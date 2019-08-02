@@ -38,7 +38,7 @@ class AppFileWriter {
 
       // Read the file
       String contents = await file.readAsString();
-      print('contents of local file: ' + contents);
+      print('reading contents of file: ' + contents);
       Map<String, dynamic> jsonMap = await jsonDecode(contents);
       // Set state
       user = User.fromJson(jsonMap);
@@ -51,7 +51,6 @@ class AppFileWriter {
     }
   }
 
-
   _writeNewUser() async {
     final file = await _localFile;
     print('Writing new user!');
@@ -59,7 +58,7 @@ class AppFileWriter {
     file.writeAsString(userString);
   }
 
-  Future<File> writeRoutine(Routine routine, {isHistory}) async {
+  Future<Routine> writeRoutine(Routine routine, {isHistory}) async {
     File file;
     user.routines.add(routine);
     if (isHistory != null) {
@@ -71,21 +70,24 @@ class AppFileWriter {
     print('writing to file: ' + userString);
 
     // Write the file.
-    return file.writeAsString(userString);
+    await file.writeAsString(userString);
+    return routine;
   }
 
   deleteRoutine(String uuid) async {
-    user.routines = user.routines.where((routine) => routine.id != uuid).toList();
+    user.routines =
+        user.routines.where((routine) => routine.id != uuid).toList();
     final file = await _localFile;
     final userString = jsonEncode(user);
-    print('writing to file: ' + userString);
+    print('deleted and writing to file: ' + userString);
 
     // Write the file.
-    return file.writeAsString(userString);
+    await file.writeAsString(userString);
   }
 
-  updateRoutine(Routine routine) async {
+  Future<Routine> updateRoutine(Routine routine) async {
     await deleteRoutine(routine.id);
     await writeRoutine(routine);
+    return routine;
   }
 }

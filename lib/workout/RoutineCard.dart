@@ -46,7 +46,7 @@ class RoutineCardState extends State<RoutineCard> {
               context,
               MaterialPageRoute(
                   builder: (context) => CreateRoutine(
-                        widget.routine,
+                        routineId: widget.routine.id,
                         editable: true,
                       )));
         },
