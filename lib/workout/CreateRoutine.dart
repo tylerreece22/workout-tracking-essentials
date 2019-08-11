@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracking_essentials/genericWidgets/BinaryAppDialog.dart';
 import 'package:workout_tracking_essentials/model/Routine.dart';
 import 'package:workout_tracking_essentials/model/User.dart';
+import 'package:workout_tracking_essentials/util/UserManager.dart';
+import 'package:workout_tracking_essentials/util/UserProvider.dart';
 import 'package:workout_tracking_essentials/util/globals.dart' as global;
 
 import 'widgets/EditingBar.dart';
@@ -23,6 +25,7 @@ class CreateRoutineState extends State<CreateRoutine> {
   List<Widget> workoutsToShow = [];
   bool editable;
   String routineId;
+  Routine routine;
 
   CreateRoutineState({this.routineId, this.editable});
 
@@ -43,12 +46,13 @@ class CreateRoutineState extends State<CreateRoutine> {
 
   @override
   Widget build(BuildContext context) {
+    UserManager manager = UserProvider.of(context);
     print('routineId: $routineId');
     return FutureBuilder(
       future: _getRoutine(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          Routine routine = snapshot.data;
+          routine = snapshot.data;
           return Scaffold(
               appBar: AppBar(
                   title: Row(
@@ -88,6 +92,7 @@ class CreateRoutineState extends State<CreateRoutine> {
                       children: <Widget>[
                         EditingBar(editable ? 'Edit Routine' : 'Create Routine',
                             () => global.writer.updateRoutine(routine)),
+                        // TODO: figure out how to update this routine the best way while still componentizing
                         WorkoutList(routine),
                       ],
                     ));
